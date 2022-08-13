@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.app') 
+<!-- layoutsフォルダ内のapp.blade.phpに引き渡すための関数 -->
 
 @section('content')
 <div class="row justify-content-center ml-0 mr-0 h-100">

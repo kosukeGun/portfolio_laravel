@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Memo;
 use App\Models\Tag;
+// モデルに相当するファイルのパスを指定する
 
 class HomeController extends Controller
 {
@@ -52,12 +53,14 @@ class HomeController extends Controller
         //同じタグがあるか確認
         $exist_tag=Tag::where("name",$data["tag"])->where("user_id",$data["user_id"])->first();
         // dd($exist_tag);
+        // whereを使って条件を絞る（第一引数：対象のカラム　第二引数：条件となる値）
+        // 
 
-        if(empty($exist_tag["id"]))
+        if(empty($exist_tag["id"]))// $exist_tag["id"]が空である場合は新たにデータを挿入する
         {
             $tag_id=Tag::insertGetId(["name"=>$data["tag"],"user_id"=>$data["user_id"]]);
         }
-        else
+        else // 既に同じユーザにおいて同じタグが存在する場合はそれを使う 
         {
             $tag_id=$exist_tag["id"];
 
@@ -88,11 +91,12 @@ class HomeController extends Controller
         $tags = Tag::where("user_id",$user["id"])->get();
 
         return view("edit",compact("memo","user","memos","tags"));
+        // 変数をviewへ受け渡す関数
 
         
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)// 優先度：POST >> GET
     {
         $inputs=$request->all();
         // dd($inputs);
