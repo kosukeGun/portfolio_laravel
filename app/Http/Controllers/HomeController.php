@@ -30,7 +30,7 @@ class HomeController extends Controller
         //ASC:昇順、DESC:降順
         $memos = Memo::where("user_id",$user["id"])->where("status",1)->orderBy("updated_at","DESC")->get();
         // dd($memos);
-        return view('home',compact("user","memos"));
+        return view('create',compact("user","memos"));
     }
 
     public function create()
@@ -98,6 +98,15 @@ class HomeController extends Controller
         // dd($inputs);
         Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"]]);
         return redirect()->route("home");
+    }
+
+    public function delete(Request $request, $id)
+    {
+        $inputs = $request->all();
+
+        Memo::where("id",$id)->update(["status" => 2]);
+
+        return redirect()->route("home")->with("success","メモの削除が完了しました！");
     }
 
 }
