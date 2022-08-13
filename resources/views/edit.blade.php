@@ -1,5 +1,4 @@
 @extends('layouts.app') 
-<!-- layoutsフォルダ内のapp.blade.phpに引き渡すための関数 -->
 
 @section('content')
 <div class="row justify-content-center ml-0 mr-0 h-100">
@@ -16,6 +15,10 @@
             <form method='POST' action="{{route('update',['id' => $memo['id']])}}">
                 @csrf
                 <input type='hidden' name='user_id' value="{{ $user['id'] }}">
+                <div class="form-group">
+                    <label for="title">件名</label>
+                    <h1>{{$title[0]["name"]}}</h1>
+                </div>
                 <div class="form-group">
                      <textarea name='content' class="form-control"rows="10">{{$memo["content"]}}</textarea>
                 </div>

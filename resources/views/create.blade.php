@@ -10,6 +10,11 @@
                 @csrf
                 <input type='hidden' name='user_id' value="{{ $user['id'] }}">
                 <div class="form-group">
+                    <label for="title">件名</label>
+                    <input name='title' type="text" class="form-control" id="title" placeholder="件名を入力">
+                </div>
+                <div class="form-group">
+                    <label for="content">本文</label>
                      <textarea name='content' class="form-control"rows="10"></textarea>
                 </div>
                 <div class="form-group">
