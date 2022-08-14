@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('titles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 100);
+            $table->string('name', 100)->default("件名なし");
             $table->integer('user_id');
             $table->timestamps();
         });

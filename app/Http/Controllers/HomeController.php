@@ -121,4 +121,16 @@ class HomeController extends Controller
         return redirect()->route("home")->with("success","メモの削除が完了しました！");
     }
 
+    public function upload()
+    {
+        $user = \Auth::User();
+        // $memo = Memo::where('status',1)->where('id',$id)->where('user_id',$user["id"])->first();
+
+        $memos = Memo::where("user_id",$user["id"])->where("status",1)->orderBy("updated_at","DESC")->get();
+
+
+
+        return view("upload",compact("user","memos"));    
+    }
+
 }

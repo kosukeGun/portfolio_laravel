@@ -17,12 +17,14 @@
                 <input type='hidden' name='user_id' value="{{ $user['id'] }}">
                 <div class="form-group">
                     <label for="title">件名</label>
-                    <h1>{{$title[0]["name"]}}</h1>
+                    <h2>{{$title[0]["name"]}}</h2>
                 </div>
                 <div class="form-group">
+                <label for="content">本文</label>
                      <textarea name='content' class="form-control"rows="10">{{$memo["content"]}}</textarea>
                 </div>
                 <div class="form-group">
+                <label for="tag">タグ</label>
                     <select class='form-control' name='tag_id'>
                 @foreach($tags as $tag)
                     <option value="{{ $tag['id'] }}" {{ $tag['id'] == $memo['tag_id'] ? "selected" : "" }}>{{$tag['name']}}</option>
