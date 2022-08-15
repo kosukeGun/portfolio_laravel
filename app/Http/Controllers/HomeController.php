@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Memo;
 use App\Models\Tag;
 use App\Models\Title;
+use App\Models\Image;
 
 // モデルに相当するファイルのパスを指定する
 
@@ -70,18 +71,28 @@ class HomeController extends Controller
 
         $title_id=Title::insertGetId(["name"=>$data["title"],"user_id"=>$data["user_id"]]);
 
-        
-
-
         //先にタグをインサート
         
         // dd($tag_id);
 
+        // イメージのIDを定義
+
+        $image_name = $request->sample_image->getClientOriginalName();
+
+        $image = $request->sample_image->storeAs('',$image_name,"public");
+
+        $image_id = Image::insertGetId(["name"=>$image_name,"path"=>$image,"user_id"=>$data["user_id"]]);
+
         
-        //タグのIDが判明する
-        // タグIDをmemosテーブルに入れてあげる
-        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id, 'status' => 1]);
         
+        // //タグのIDが判明する
+        // // タグIDをmemosテーブルに入れてあげる
+        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id, "image_id"=>$image_id, 'status' => 1]);
+
+        // // 画像の保存
+
+        // dd($memo_id);
+
         // リダイレクト処理
         return redirect()->route('home');
     }
@@ -98,7 +109,9 @@ class HomeController extends Controller
 
         $title = Title::where("user_id",$user["id"])->where("id",$memo["title_id"])->get();
 
-        return view("edit",compact("memo","user","memos","tags","title"));
+        $image = Image::where("user_id",$user["id"])->where("id",$memo["image_id"])->get();
+
+        return view("edit",compact("memo","user","memos","tags","title","image"));
         // 変数をviewへ受け渡す関数
 
         

@@ -6,25 +6,11 @@
     <div class="card w-100">
         <div class="card-header d-flex justify-content-between">
             
-        <form method='POST' action="/store" enctype = "multipant/form-data">
-                @csrf
-                <input type='hidden' name='user_id' value="{{ $user['id'] }}">
+            <form method='POST' action="/store" enctype = "multipart/form-data">
+                @csrf   
                 <div class="form-group">
-                    <label for="title">件名</label>
-                    <input name='title' type="text" class="form-control" id="title" placeholder="件名を入力">
+                    <input type="file" name="sample_image">
                 </div>
-                <div class="form-group">
-                    <label for="content">本文</label>
-                     <textarea name='content' class="form-control"rows="10"></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="file" name="image">
-                </div>
-                <div class="form-group">
-                    <label for="tag">タグ</label>
-                    <input name='tag' type="text" class="form-control" id="tag" placeholder="タグを入力">
-                </div>
-                
                 <button type='submit' class="btn btn-primary btn-lg">保存</button>
             </form>
             

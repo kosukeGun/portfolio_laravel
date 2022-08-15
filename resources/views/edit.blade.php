@@ -17,7 +17,7 @@
                 <input type='hidden' name='user_id' value="{{ $user['id'] }}">
                 <div class="form-group">
                     <label for="title">件名</label>
-                    <h2>{{$title[0]["name"]}}</h2>
+                    <h2 name="title_id">{{$title[0]["name"]}}</h2>
                 </div>
                 <div class="form-group">
                 <label for="content">本文</label>
@@ -30,6 +30,9 @@
                     <option value="{{ $tag['id'] }}" {{ $tag['id'] == $memo['tag_id'] ? "selected" : "" }}>{{$tag['name']}}</option>
                 @endforeach
                     </select>
+                </div>
+                <div class="form-group">
+                    <img src="{{asset('storage/DISU7759.jpg')}}">
                 </div>
                 
                 <button type='submit' class="btn btn-primary btn-lg">更新</button>
