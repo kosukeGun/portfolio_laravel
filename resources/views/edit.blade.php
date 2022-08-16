@@ -21,8 +21,12 @@
                     <h2 name="title_id">{{$title[0]["name"]}}</h2>
                 </div>
                 <div class="form-group">
+                    <label>添付画像</label>
+                    
+                    
                     <img src="{{'/storage/' . $memo['image']}}" class = 'w-100 mb-3' >
                 </div>
+                
                 <div class="form-group">
                 <label for="content">本文</label>
                      <textarea name='content' class="form-control"rows="10">{{$memo["content"]}}</textarea>
