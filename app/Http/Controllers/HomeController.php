@@ -93,11 +93,11 @@ class HomeController extends Controller
         
         // //タグのIDが判明する
         // // タグIDをmemosテーブルに入れてあげる
-        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id, "image"=>$path[1], 'status' => 1]);
+        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id, "image"=>$path, 'status' => 1]);
 
         // // 画像の保存
 
-        dd($data);
+        // dd($data);
 
         // リダイレクト処理
         return redirect()->route('home');
