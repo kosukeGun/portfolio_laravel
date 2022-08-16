@@ -77,17 +77,23 @@ class HomeController extends Controller
 
         // イメージのIDを定義
 
-        $image_name = $request->sample_image->getClientOriginalName();
+        $image = $request->file("sample_image");
 
-        $image = $request->sample_image->storeAs('',$image_name,"public");
-
-        $image_id = Image::insertGetId(["name"=>$image_name,"path"=>$image,"user_id"=>$data["user_id"]]);
+        if($request->hasFile("sample_image"))
+        {
+            $path = \Storage::put("/public",$image);
+            $path = explode("/",$path);
+        }
+        else
+        {
+            $path = null;
+        }
 
         
         
         // //タグのIDが判明する
         // // タグIDをmemosテーブルに入れてあげる
-        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id, "image_id"=>$image_id, 'status' => 1]);
+        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id, "image"=>$path[1], 'status' => 1]);
 
         // // 画像の保存
 
@@ -109,9 +115,9 @@ class HomeController extends Controller
 
         $title = Title::where("user_id",$user["id"])->where("id",$memo["title_id"])->get();
 
-        $image = Image::where("user_id",$user["id"])->where("id",$memo["image_id"])->get();
+        
 
-        return view("edit",compact("memo","user","memos","tags","title","image"));
+        return view("edit",compact("memo","user","memos","tags","title"));
         // 変数をviewへ受け渡す関数
 
         
