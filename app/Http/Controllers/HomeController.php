@@ -108,7 +108,7 @@ class HomeController extends Controller
     {
         $inputs=$request->all();
         // dd($inputs);
-        Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"],"title_id"=>$inputs["title_id"]]);
+        Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"],"answer" => $inputs["answer"]]);
         return redirect()->route("home");
     }
 
