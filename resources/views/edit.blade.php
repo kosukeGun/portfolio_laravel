@@ -12,13 +12,17 @@
             </form>
         </div>
         <div class="card-body">
-            <form method='POST' action="{{route('update',['id' => $memo['id']])}}">
+            <form method='POST' enctype="multipart/form-data" action="{{route('update',['id' => $memo['id']])}}">
                 @csrf
                 <input type='hidden' name='user_id' value="{{ $user['id'] }}">
                 
                 <div class="form-group">
                     <label for="title">件名</label>
                     <h1>{{$title[0]["name"]}}</h1>
+                </div>
+                <div class="form-group">
+                    <label for="image">添付画像</label>
+                    <img src = "{{asset('storage/$memo['image']')}}"></img>
                 </div>
                 <div class="form-group">
                      <textarea name='content' class="form-control"rows="10">{{$memo["content"]}}</textarea>

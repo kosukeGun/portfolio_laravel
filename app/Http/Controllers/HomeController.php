@@ -71,7 +71,17 @@ class HomeController extends Controller
 
         $title_id=Title::insertGetId(["name"=>$data["title"],"user_id"=>$data["user_id"]]);
 
-        
+        $image = $request->file("sample_image");
+
+        if($request->hasFile("sample_image"))
+        {
+            $path = \Storage::put("/public",$image);
+            $path = explode("/",$path);
+        }
+        else
+        {
+            $path = null;
+        }
 
 
         //先にタグをインサート
@@ -81,7 +91,7 @@ class HomeController extends Controller
         
         //タグのIDが判明する
         // タグIDをmemosテーブルに入れてあげる
-        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id, 'status' => 1]);
+        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id,"image" => $path, 'status' => 1]);
         
         // リダイレクト処理
         return redirect()->route('home');
