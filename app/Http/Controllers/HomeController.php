@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Memo;
 use App\Models\Tag;
 use App\Models\Title;
+use App\Models\Image;
 
 // モデルに相当するファイルのパスを指定する
 
@@ -98,6 +99,8 @@ class HomeController extends Controller
 
         $title = Title::where("user_id",$user["id"])->where("id",$memo["title_id"])->get();
 
+        
+
         return view("edit",compact("memo","user","memos","tags","title"));
         // 変数をviewへ受け渡す関数
 
@@ -108,7 +111,7 @@ class HomeController extends Controller
     {
         $inputs=$request->all();
         // dd($inputs);
-        Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"],"answer" => $inputs["answer"]]);
+        Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"],"title_id"=>$inputs["title_id"]]);
         return redirect()->route("home");
     }
 
@@ -119,6 +122,18 @@ class HomeController extends Controller
         Memo::where("id",$id)->update(["status" => 2]);
 
         return redirect()->route("home")->with("success","メモの削除が完了しました！");
+    }
+
+    public function upload()
+    {
+        $user = \Auth::User();
+        // $memo = Memo::where('status',1)->where('id',$id)->where('user_id',$user["id"])->first();
+
+        $memos = Memo::where("user_id",$user["id"])->where("status",1)->orderBy("updated_at","DESC")->get();
+
+
+
+        return view("upload",compact("user","memos"));    
     }
 
 }

@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('titles', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name', 100)->default("件名なし");
-            $table->integer('user_id');
-            $table->timestamps();
+        Schema::table('memos', function (Blueprint $table) {
+            $table->dropColumn("image_id");
+            //
         });
     }
 
@@ -28,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('titles');
+        Schema::table('memos', function (Blueprint $table) {
+            $table->bigInteger("image_id")->default(false);
+            //
+        });
     }
 };

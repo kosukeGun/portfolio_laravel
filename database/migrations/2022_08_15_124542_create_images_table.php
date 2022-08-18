@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('titles', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name', 100)->default("件名なし");
-            $table->integer('user_id');
+        Schema::create('images', function (Blueprint $table) {
+            $table->bigIncrements("id");
+            $table->string("name");
+            $table->string("path");
+            $table->bigInteger("user_id");
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('titles');
+        Schema::dropIfExists('images');
     }
 };
