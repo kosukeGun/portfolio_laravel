@@ -91,7 +91,7 @@ class HomeController extends Controller
         
         //タグのIDが判明する
         // タグIDをmemosテーブルに入れてあげる
-        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id,"image" => $path, 'status' => 1]);
+        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id,"image" => $path[1], 'status' => 1]);
         
         // リダイレクト処理
         return redirect()->route('home');
@@ -121,7 +121,7 @@ class HomeController extends Controller
     {
         $inputs=$request->all();
         // dd($inputs);
-        Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"],"title_id"=>$inputs["title_id"]]);
+        Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"],"answer"=>$inputs["answer"]]);
         return redirect()->route("home");
     }
 
