@@ -34,7 +34,10 @@ class HomeController extends Controller
         //ASC:昇順、DESC:降順
         $memos = Memo::where("user_id",$user["id"])->where("status",1)->orderBy("updated_at","DESC")->get();
         // dd($memos);
-        return view('create',compact("user","memos"));
+
+        $titles = Title::where("user_id",$user["id"])->get();
+
+        return view('create',compact("user","memos","titles"));
     }
 
     public function create()
@@ -109,9 +112,9 @@ class HomeController extends Controller
 
         $title = Title::where("user_id",$user["id"])->where("id",$memo["title_id"])->get();
 
-        
+        $titles = Title::where("user_id",$user["id"])->get();
 
-        return view("edit",compact("memo","user","memos","tags","title"));
+        return view("edit",compact("memo","user","memos","tags","title","titles"));
         // 変数をviewへ受け渡す関数
 
         
