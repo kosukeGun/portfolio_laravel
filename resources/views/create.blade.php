@@ -25,7 +25,6 @@
                     <input name='tag' type="text" class="form-control" id="tag" placeholder="タグを入力">
                 </div>
                 <div class="form-group">
-                    <label for="image">添付画像</label>
                     <input type="file" name="sample_image">
                 </div>
                 <button type='submit' class="btn btn-primary btn-lg">保存</button>
