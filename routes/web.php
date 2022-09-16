@@ -23,6 +23,8 @@ Route::group(["middleware" => "auth"], function() // ログインした状態で
 {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home/noanswer', [App\Http\Controllers\HomeController::class, 'index2'])->name('index2');
+    Route::get('/tagList', [App\Http\Controllers\HomeController::class, 'tag'])->name('tag');
     Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
     // Route::get('/store', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
     Route::post('/store', [App\Http\Controllers\HomeController::class, 'store'])->name('store');

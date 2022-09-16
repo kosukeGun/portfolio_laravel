@@ -37,7 +37,27 @@ class HomeController extends Controller
 
         $titles = Title::where("user_id",$user["id"])->get();
 
-        return view('create',compact("user","memos","titles"));
+        return view('questionList',compact("user","memos","titles"));
+    }
+
+    public function index2()
+    {
+        //メモ一覧を取得
+        $user = \Auth::user();
+        //ASC:昇順、DESC:降順
+        $memos_noanswer = Memo::where("user_id",$user["id"])->where("status",1)->where("answer", 0)->orderBy("updated_at","DESC")->get();
+        // dd($memos);
+
+        $titles = Title::where("user_id",$user["id"])->get();
+
+        return view('questionList2',compact("user","memos_noanswer","titles"));
+    }
+
+    public function tag()
+    {
+        $tags = Tag::all();
+
+        return view('tagList', compact("tags"));
     }
 
     public function create()

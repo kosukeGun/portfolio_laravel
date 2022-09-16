@@ -41,7 +41,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -53,23 +53,32 @@
                                 </li>
                             @endif
                         @else
+                        <li>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button class="btn btn-primary me-md-2" type="button" onclick="location.href='/tagList'">タグ一覧</button>
+                                <button class="btn btn-primary me-md-2" type="button" onclick="location.href='/home'">質問一覧</button>
+                                <button class="btn btn-primary me-md-2" type="button" onclick="location.href='/create'">質問作成</button>
+                                
+                            </div>
+                        </li>
                         <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/create">マイページ</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
@@ -82,32 +91,10 @@
               {{ session('success') }}
             </div>
         @endif
-          <div class="row" style='height: 92vh;'>
-            <div class="col-md-2 p-0">
-              <div class="card h-100">
-              <div class="card-header">タグ一覧</div>
-              <div class="card-body py-2 px-4">
-                <a class='d-block' href='/'>全て表示</a>
-                    @foreach($tags as $tag)
-                        <a href="/?tag={{$tag['name']}}" class = "d-block">{{$tag["name"]}}</a>
-                    @endforeach
-
-            　　</div>
-              </div>
-        　　</div>
-            <div class="col-md-4 p-0">
-              <div class="card h-100">
-                <div class="card-header d-flex">質問一覧 <a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a></div>
-                <div class="card-body p-2">
-                    @foreach($memos as $memo)
-                    <a href="/edit/{{$memo['id']}}" class = "d-block">{{$titles[$memo["title_id"]-1]["name"]}}</a>
-                    @endforeach
-                </div>
-              </div>    
-            </div> <!-- col-md-3 -->
-            <div class="col-md-6 p-0">
-              @yield('content')
-            </div>
+            <!-- col-md-3 -->
+        <div class="col-md-6 p-0">
+            @yield('content')
+        </div>
           </div> <!-- row justify-content-center -->
         </main>
     </div>
