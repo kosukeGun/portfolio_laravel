@@ -7,6 +7,7 @@ use App\Models\Memo;
 use App\Models\Tag;
 use App\Models\Title;
 use App\Models\Image;
+use App\Models\Problem;
 
 // モデルに相当するファイルのパスを指定する
 
@@ -135,7 +136,25 @@ class HomeController extends Controller
     {
         $inputs=$request->all();
         // dd($inputs);
-        Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"],"answer"=>$inputs["answer"]]);
+        $user = \Auth::user();
+
+        //同じタグがあるか確認
+        $exist_problem=Problem::where("name",$inputs["problem"])->where("explain", $inputs["explain"])->where("user_id",$user["id"])->first();
+        // dd($exist_tag);
+        // whereを使って条件を絞る（第一引数：対象のカラム　第二引数：条件となる値）
+        // 
+
+        if(empty($exist_problem["id"]))// $exist_tag["id"]が空である場合は新たにデータを挿入する
+        {
+            $problem_id=Problem::insertGetId(["name"=>$inputs["problem"], "explain"=>$inputs["explain"], "user_id"=>$user["id"]]);
+        }
+        else // 既に同じユーザにおいて同じタグが存在する場合はそれを使う 
+        {
+            $problem_id=$exist_problem["id"];
+
+        }
+
+        Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"], "problem_id"=>$problem_id, "answer"=>$inputs["answer"]]);
         return redirect()->route("home")->with("primary", "更新が完了しました！");
     }
 
@@ -160,6 +179,7 @@ class HomeController extends Controller
             $tag_id=$exist_tag["id"];
 
         }
+        
 
         // Tag::insertGetId(["name"=>$data["new_tag"],"user_id"=>$user["id"]]);
 

@@ -40,18 +40,23 @@
                             <option value=1 {{ $memo["answer"]==1 ? "selected" : "" }}>回答済み</option>
                         </select>
                     </div>
-                    
-                    <button type='submit' class="btn btn-primary btn-lg">更新</button>
+                    <div class="form-group">
+                        <label for="problem">悩みの原因</label>
+                        <input name='problem' class="form-control" placeholder="悩みの原因を入力（”知識不足”など）">
+                    </div>
+                    <div class="form-group">
+                        <label for="explain">原因説明</label>
+                        <textarea name='explain' class="form-control"></textarea>
+                    </div>
+                    <div class="d-grid gap-2 col-4 mx-auto my-4">
+                        <button type='submit' class="btn btn-primary btn-lg">更新</button>
+                    </div>
                 </form>
             </div>
         </div>
         <div class="card w-50">
             <div class="card-header d-flex justify-content-between">
                 添付画像
-                <form method='POST' action="/delete/{{$memo['id']}}" id='delete-form'>
-                    @csrf
-                    <button class='p-0 mr-2' style='border:none;'><i id='delete-button' class="fas fa-trash"></i></button>
-                </form>
             </div>
             <div class="card-body">
                 <form method='POST' enctype="multipart/form-data" action="{{route('update',['id' => $memo['id']])}}">
