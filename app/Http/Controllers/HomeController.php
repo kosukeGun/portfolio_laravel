@@ -105,10 +105,10 @@ class HomeController extends Controller
         
         //タグのIDが判明する
         // タグIDをmemosテーブルに入れてあげる
-        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'],"tag_id"=>$tag_id, "title_id"=>$title_id,"image" => $path[1], 'status' => 1]);
+        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'], "title_id"=>$title_id,"image" => $path[1], 'status' => 1]);
         
         // リダイレクト処理
-        return redirect()->route('home');
+        return redirect()->route('home')->with("success", "新規データが送信されました！");
     }
 
     public function edit($id){
@@ -136,7 +136,7 @@ class HomeController extends Controller
         $inputs=$request->all();
         // dd($inputs);
         Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"],"answer"=>$inputs["answer"]]);
-        return redirect()->route("home");
+        return redirect()->route("home")->with("primary", "更新が完了しました！");
     }
 
     public function addTag(Request $request)
@@ -172,7 +172,7 @@ class HomeController extends Controller
 
         Memo::where("id",$id)->update(["status" => 2]);
 
-        return redirect()->route("home")->with("success","メモの削除が完了しました！");
+        return redirect()->route("home")->with("danger","メモの削除が完了しました！");
     }
 
     public function upload()
