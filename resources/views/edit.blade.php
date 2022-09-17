@@ -4,7 +4,7 @@
 <div class="col-md-12 p-0">
     <div class="row justify-content-center ml-0 mr-0 h-100">
         <!-- {{$user["name"] }} -->
-        <div class="card w-100">
+        <div class="card w-50">
             <div class="card-header d-flex justify-content-between">
                 メモ編集
                 <form method='POST' action="/delete/{{$memo['id']}}" id='delete-form'>
@@ -21,11 +21,6 @@
                         <label for="title">件名</label>
                         <h1>{{$title[0]["name"]}}</h1>
                     </div>
-                    <div class="form-group">
-                        <label for="image">添付画像</label>
-                        <img src="{{ '/storage/' . $memo['image']}}" class='w-100 mb-3'/>
-                    </div>
-                    
                     <div class="form-group">
                         <label for="content">質問内容</label>
                         <textarea name='content' class="form-control"rows="10">{{$memo["content"]}}</textarea>
@@ -47,6 +42,31 @@
                     </div>
                     
                     <button type='submit' class="btn btn-primary btn-lg">更新</button>
+                </form>
+            </div>
+        </div>
+        <div class="card w-50">
+            <div class="card-header d-flex justify-content-between">
+                添付画像
+                <form method='POST' action="/delete/{{$memo['id']}}" id='delete-form'>
+                    @csrf
+                    <button class='p-0 mr-2' style='border:none;'><i id='delete-button' class="fas fa-trash"></i></button>
+                </form>
+            </div>
+            <div class="card-body">
+                <form method='POST' enctype="multipart/form-data" action="{{route('update',['id' => $memo['id']])}}">
+                    @csrf
+                    <div class="form-group my-7">
+                        @if($memo["image"] != null)
+                        <div style="margin-top:7%;">
+                            <img src="{{ '/storage/' . $memo['image']}}" class='w-100 mb-3'/>
+                        </div>
+                        @else
+                        <div style="background-color:grey; margin:5%; text-align:center; padding:30%;">
+                            <h2 style="color:white;">画像無し</h2>
+                        </div>
+                        @endif
+                    </div>
                 </form>
             </div>
         </div>
