@@ -27,7 +27,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+     public function index()
     {
         //メモ一覧を取得
         $user = \Auth::user();
@@ -58,6 +58,13 @@ class HomeController extends Controller
         $tags = Tag::all();
 
         return view('tagList', compact("tags"));
+    }
+
+    public function myPage()
+    {
+        $user = \Auth::user();
+
+        return view('myPage', compact("user"));
     }
 
     public function create()

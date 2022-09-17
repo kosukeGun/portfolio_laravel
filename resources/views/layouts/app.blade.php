@@ -67,7 +67,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/create">マイページ</a>
+                                <a class="dropdown-item" href="/myPage">マイページ</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -91,11 +91,11 @@
               {{ session('success') }}
             </div>
         @endif
-            <!-- col-md-3 -->
-        <div class="col-md-6 p-0">
-            @yield('content')
-        </div>
-          </div> <!-- row justify-content-center -->
+            
+        
+        @yield('content')
+        
+           
         </main>
     </div>
     @yield('footer')
