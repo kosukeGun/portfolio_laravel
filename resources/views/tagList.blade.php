@@ -11,6 +11,12 @@
                 @foreach($tags as $tag)
                     <a href="/?tag={{$tag['name']}}" class = "d-block">{{$tag["name"]}}</a>
                 @endforeach
+                <form method='POST' action="/addTag">
+                    @csrf
+                    <label　for="new_tag">タグを追加</label>
+                    <input name='new_tag' type="text" class="form-control" id="tag" placeholder="タグを追加">
+                    <button type='submit' class="btn btn-primary btn-lg">追加</button>
+                </form>
             </div>
         </div>
     </div>

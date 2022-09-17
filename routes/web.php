@@ -33,6 +33,7 @@ Route::group(["middleware" => "auth"], function() // ログインした状態で
     Route::post('/delete/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('delete');
     Route::get('/upload', [App\Http\Controllers\HomeController::class, 'upload'])->name('upload');
     Route::get('/myPage', [App\Http\Controllers\HomeController::class, 'myPage'])->name('myPage');
+    Route::post('/addTag', [App\Http\Controllers\HomeController::class, 'addTag'])->name('addTag');
     // Routeを使う事でURLとコントローラのアクションの対応付けを行うことが出来る
     // URLでアクセスされたときには「このコントローラのアクションを呼び起こせ！！」とアプリに命令
     // メソッドとしてはget post put delete等がある

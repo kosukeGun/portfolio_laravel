@@ -33,6 +33,32 @@
                         </div>
                     </div>
                 </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-5">
+                        <div class="card text-center" style="width: 80%; margin-top:30px;">
+                            <div class="card-header">
+                                質問回数
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                <p>34</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 ">
+                        <div class="card text-center" style="width: 80%; margin-top:30px;">
+                            <div class="card-header">
+                                回答回数
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                <p>12</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

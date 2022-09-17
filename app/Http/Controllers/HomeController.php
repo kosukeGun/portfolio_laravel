@@ -83,23 +83,6 @@ class HomeController extends Controller
         // POSTされたデータをDB（memosテーブル）に挿入
         // MEMOモデルにDBへ保存する命令を出す
 
-
-        //同じタグがあるか確認
-        $exist_tag=Tag::where("name",$data["tag"])->where("user_id",$data["user_id"])->first();
-        // dd($exist_tag);
-        // whereを使って条件を絞る（第一引数：対象のカラム　第二引数：条件となる値）
-        // 
-
-        if(empty($exist_tag["id"]))// $exist_tag["id"]が空である場合は新たにデータを挿入する
-        {
-            $tag_id=Tag::insertGetId(["name"=>$data["tag"],"user_id"=>$data["user_id"]]);
-        }
-        else // 既に同じユーザにおいて同じタグが存在する場合はそれを使う 
-        {
-            $tag_id=$exist_tag["id"];
-
-        }
-
         $title_id=Title::insertGetId(["name"=>$data["title"],"user_id"=>$data["user_id"]]);
 
         $image = $request->file("sample_image");
@@ -154,6 +137,33 @@ class HomeController extends Controller
         // dd($inputs);
         Memo::where("id",$id)->update(["content" => $inputs["content"],"tag_id"=>$inputs["tag_id"],"answer"=>$inputs["answer"]]);
         return redirect()->route("home");
+    }
+
+    public function addTag(Request $request)
+    {
+        $data = $request->all();
+
+        $user = \Auth::user();
+
+        //同じタグがあるか確認
+        $exist_tag=Tag::where("name",$data["new_tag"])->where("user_id",$user["id"])->first();
+        // dd($exist_tag);
+        // whereを使って条件を絞る（第一引数：対象のカラム　第二引数：条件となる値）
+        // 
+
+        if(empty($exist_tag["id"]))// $exist_tag["id"]が空である場合は新たにデータを挿入する
+        {
+            $tag_id=Tag::insertGetId(["name"=>$data["new_tag"],"user_id"=>$user["id"]]);
+        }
+        else // 既に同じユーザにおいて同じタグが存在する場合はそれを使う 
+        {
+            $tag_id=$exist_tag["id"];
+
+        }
+
+        // Tag::insertGetId(["name"=>$data["new_tag"],"user_id"=>$user["id"]]);
+
+        return redirect("/tagList");
     }
 
     public function delete(Request $request, $id)
