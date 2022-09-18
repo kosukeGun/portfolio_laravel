@@ -37,11 +37,11 @@
                     <div class="col-sm-5">
                         <div class="card text-center" style="width: 80%; margin-top:30px;">
                             <div class="card-header">
-                                質問回数
+                                質問数
                             </div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                <p>34</p>
+                                <p>{{$count_question}}</p>
                                 </blockquote>
                             </div>
                         </div>
@@ -49,11 +49,11 @@
                     <div class="col-sm-5 ">
                         <div class="card text-center" style="width: 80%; margin-top:30px;">
                             <div class="card-header">
-                                回答回数
+                                回答数
                             </div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                <p>12</p>
+                                <p>{{$count_answer}}</p>
                                 </blockquote>
                             </div>
                         </div>

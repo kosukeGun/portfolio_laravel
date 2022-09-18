@@ -65,7 +65,11 @@ class HomeController extends Controller
     {
         $user = \Auth::user();
 
-        return view('myPage', compact("user"));
+        $count_question = Memo::where("user_id", $user["id"])->count();
+
+        $count_answer = Problem::where("user_id", $user["id"])->count();
+
+        return view('myPage', compact("user","count_question", "count_answer"));
     }
 
     public function create()
