@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use App\Models\Memo;
 use App\Models\Tag;
 use App\Models\Title;
@@ -32,13 +34,15 @@ class HomeController extends Controller
     {
         //メモ一覧を取得
         $user = \Auth::user();
+
+        $users = User::all();
         //ASC:昇順、DESC:降順
         $memos = Memo::where("user_id",$user["id"])->where("status",1)->orderBy("updated_at","DESC")->get();
         // dd($memos);
 
-        $titles = Title::where("user_id",$user["id"])->get();
+        $titles = Title::all();
 
-        return view('questionList',compact("user","memos","titles"));
+        return view('questionList',compact("user","memos","titles","users"));
     }
 
     public function index2()
@@ -65,11 +69,15 @@ class HomeController extends Controller
     {
         $user = \Auth::user();
 
+        $problems = Problem::all();
+
+        $memos = Memo::join("problems", "problems.id","memos.problem_id")->get();
+
         $count_question = Memo::where("user_id", $user["id"])->count();
 
         $count_answer = Problem::where("user_id", $user["id"])->count();
 
-        return view('myPage', compact("user","count_question", "count_answer"));
+        return view('myPage', compact("user","memos" ,"count_question", "count_answer"));
     }
 
     public function create()

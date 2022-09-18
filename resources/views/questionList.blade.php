@@ -11,9 +11,20 @@
                 <a href="/home/noanswer">未回答のみ</a>
             </div>
             <div class="card-body py-2 px-2">
-                @foreach($memos as $memo)
-                <a href="/edit/{{$memo['id']}}" class = "d-block">{{$titles[$memo["title_id"]-1]["name"]}}</a>
-                @endforeach 
+                <div class="row">
+                    @foreach($memos as $memo)
+                    <div class="col-sm-4">
+                        <div class="card text-center m-4">
+                            <img src="{{ '/storage/' . $memo['image']}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$titles[$memo["title_id"]-1]["name"]}}</h5>
+                                <p class="card-text">{{$users[$memo["user_id"]-1]["name"]}}</p>
+                                <a href="/edit/{{$memo['id']}}" class="btn btn-primary">回答</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </div>
         </div> 
     </div>
