@@ -54,14 +54,35 @@
                             @endif
                         @else
                         <li>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button class="btn btn-primary me-md-2" type="button" onclick="location.href='/tagList'">タグ一覧</button>
                                 <button class="btn btn-primary me-md-2" type="button" onclick="location.href='/home'">質問一覧</button>
                                 <button class="btn btn-primary me-md-2" type="button" onclick="location.href='/create'">質問作成</button>
                                 
+                            </div> -->
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <button class="btn btn-primary me-md-0" type="button" onclick="location.href='/tagList'">タグ一覧</button>
+                                <button class="btn btn-primary me-md-0" type="button" onclick="location.href='/home'">質問一覧</button>
+                                <button class="btn btn-primary me-md-0" type="button" onclick="location.href='/create'">質問作成</button>
+
+                                <div class="btn-group" role="group">
+                                    <button id="navbarDropdown" style="color:white;" class="nav-link dropdown-toggle btn btn-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <li><a class="dropdown-item" href="/myPage">マイページ</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
@@ -78,7 +99,7 @@
                                     @csrf
                                 </form>
                             </div>
-                        </li>
+                        </li> -->
                         @endguest
                     </ul>
                 </div>
