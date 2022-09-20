@@ -71,13 +71,15 @@ class HomeController extends Controller
 
         $problems = Problem::all();
 
-        $memos = Memo::join("problems", "problems.id","memos.problem_id")->get();
+        $memos_answered = Memo::where("user_id", $user["id"])->where("answer",1)->where("status",1)->get();
+
+        $titles = Title::all();
 
         $count_question = Memo::where("user_id", $user["id"])->count();
 
         $count_answer = Problem::where("user_id", $user["id"])->count();
 
-        return view('myPage', compact("user","memos" ,"count_question", "count_answer"));
+        return view('myPage', compact("user","memos_answered" ,"count_question", "count_answer","titles"));
     }
 
     public function create()
@@ -138,7 +140,9 @@ class HomeController extends Controller
 
         $titles = Title::where("user_id",$user["id"])->get();
 
-        return view("edit",compact("memo","user","memos","tags","title","titles"));
+        $problems = Problem::all();
+
+        return view("edit",compact("memo","user","memos","tags","title","titles","problems"));
         // 変数をviewへ受け渡す関数
 
         

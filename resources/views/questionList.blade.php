@@ -13,7 +13,7 @@
             <div class="card-body py-2 px-2">
                 <div class="row">
                     @foreach($memos as $memo)
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="card text-center m-4">
                             <img src="{{ '/storage/' . $memo['image']}}">
                             <div class="card-body">
