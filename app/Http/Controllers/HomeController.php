@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Models\Title;
 use App\Models\Image;
 use App\Models\Problem;
+use App\Models\Review;
 
 // モデルに相当するファイルのパスを指定する
 
