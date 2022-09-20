@@ -13,8 +13,8 @@
             <div class="card-body py-2 px-2">
                 <div class="row">
                     @foreach($memos as $memo)
-                    <div class="col-sm-3">
-                        <div class="card text-center m-4">
+                    <div class="col-sm-6 col-xs-12 col-md-3 col-lg-2">
+                        <div class="card text-center m-4 ">
                             <img src="{{ '/storage/' . $memo['image']}}">
                             <div class="card-body">
                                 <h5 class="card-title">{{$titles[$memo["title_id"]-1]["name"]}}</h5>

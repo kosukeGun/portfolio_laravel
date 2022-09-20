@@ -42,11 +42,19 @@
                     </div>
                     <div class="form-group">
                         <label for="problem">悩みの原因</label>
+                        @if($memo["problem_id"]!=null)
                         <input name='problem' class="form-control" value={{$problems[$memo['problem_id']-1]['name']}} placeholder="悩みの原因を入力（”知識不足”など）">
+                        @else
+                        <input name='problem' class="form-control" placeholder="悩みの原因を入力（”知識不足”など）">
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="explain">原因説明</label>
+                        @if($memo["problem_id"]!=null)
                         <textarea name='explain' class="form-control">{{$problems[$memo['problem_id']-1]['explain']}}</textarea>
+                        @else
+                        <textarea name='explain' class="form-control"></textarea>
+                        @endif
                     </div>
                     <div class="d-grid gap-2 col-4 mx-auto my-4">
                         <button type='submit' class="btn btn-primary btn-lg">更新</button>
