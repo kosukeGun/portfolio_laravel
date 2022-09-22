@@ -216,7 +216,7 @@ class HomeController extends Controller
 
         // Tag::insertGetId(["name"=>$data["new_tag"],"user_id"=>$user["id"]]);
 
-        return redirect("/tagList");
+        return back();
     }
 
     public function delete(Request $request, $id)
@@ -226,6 +226,26 @@ class HomeController extends Controller
         Memo::where("id",$id)->update(["status" => 2]);
 
         return redirect()->route("home")->with("danger","メモの削除が完了しました！");
+    }
+
+    public function review(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $user = \Auth::user();
+
+        $exist_review = Review::where("problem_id" ,$id)->where("user_id", $user["id"])->first();
+
+        if(empty($exist_review["id"]))
+        {
+            Review::insertGetId(["point"=>$data["review_point"], "problem_id"=>$id, "user_id"=>$user["id"]]);
+        }
+        else
+        {
+            Review::where("problem_id", $id)->where("user_id", $user["id"])->update(["point" => $data["review_point"]]);
+        }
+
+        return back()->with("review_success", "レビューが完了しました！");
     }
 
     public function upload()
