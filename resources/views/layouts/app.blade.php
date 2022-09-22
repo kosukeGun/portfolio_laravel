@@ -64,7 +64,7 @@
                                 <button class="btn btn-primary me-md-0" type="button" onclick="location.href='/tagList'">タグ一覧</button>
                                 <button class="btn btn-primary me-md-0" type="button" onclick="location.href='/home'">質問一覧</button>
                                 <button class="btn btn-primary me-md-0" type="button" onclick="location.href='/create'">質問作成</button>
-
+                                <button class="btn btn-primary me-md-0" type="button" onclick="location.href='/answerList'">解決策</button>
                                 <div class="btn-group" role="group">
                                     <button id="navbarDropdown" style="color:white;" class="nav-link dropdown-toggle btn btn-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

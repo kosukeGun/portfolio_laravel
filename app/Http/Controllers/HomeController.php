@@ -83,6 +83,15 @@ class HomeController extends Controller
         return view('myPage', compact("user","memos_answered" ,"count_question", "count_answer","titles"));
     }
 
+    public function answerList()
+    {
+        $users = User::all();
+
+        $problems = Problem::all();
+
+        return view("answerList", compact("problems","users"));
+    }
+
     public function create()
     {
         //ログインしているユーザ
