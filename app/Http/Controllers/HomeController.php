@@ -92,6 +92,13 @@ class HomeController extends Controller
         return view("answerList", compact("problems","users"));
     }
 
+    public function answerDetail($id)
+    {
+        $problem = Problem::where("id", $id)->first();
+
+        return view("answerDetail", compact("problem"));
+    }
+
     public function create()
     {
         //ログインしているユーザ
