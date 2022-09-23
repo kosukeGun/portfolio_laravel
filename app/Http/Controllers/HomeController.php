@@ -38,12 +38,12 @@ class HomeController extends Controller
 
         $users = User::all();
         //ASC:昇順、DESC:降順
-        $memos = Memo::where("user_id",$user["id"])->where("status",1)->orderBy("updated_at","DESC")->get();
+        $memos_answer = Memo::where("status",1)->orderBy("updated_at","DESC")->get();
         // dd($memos);
 
         $titles = Title::all();
 
-        return view('questionList',compact("user","memos","titles","users"));
+        return view('questionList',compact("user","memos_answer","titles","users"));
     }
 
     public function index2()
@@ -51,19 +51,19 @@ class HomeController extends Controller
         //メモ一覧を取得
         $user = \Auth::user();
         //ASC:昇順、DESC:降順
-        $memos_noanswer = Memo::where("user_id",$user["id"])->where("status",1)->where("answer", 0)->orderBy("updated_at","DESC")->get();
+        $memos_noanswer = Memo::where("status",1)->where("answer", 0)->orderBy("updated_at","DESC")->get();
         // dd($memos);
 
-        $titles = Title::where("user_id",$user["id"])->get();
+        $titles_noanswer = Title::all();
 
-        return view('questionList2',compact("user","memos_noanswer","titles"));
+        return view('questionList2',compact("user","memos_noanswer","titles_noanswer"));
     }
 
     public function tag()
     {
-        $tags = Tag::all();
+        $tags_list = Tag::all();
 
-        return view('tagList', compact("tags"));
+        return view('tagList', compact("tags_list"));
     }
 
     public function myPage()
@@ -106,7 +106,7 @@ class HomeController extends Controller
         //ログインしているユーザ
         $user = \Auth::user();
         $memos = Memo::where("user_id",$user["id"])->where("status",1)->orderBy("updated_at","DESC")->get();
-        $titles = Title::where("user_id",$user["id"])->get();
+        $titles = Title::all();
         return view('create',compact("user","memos","titles"));
     }
 
@@ -147,17 +147,17 @@ class HomeController extends Controller
 
     public function edit($id){
         $user = \Auth::user();
-        $memo = Memo::where('status',1)->where('id',$id)->where('user_id',$user["id"])->first();
+        $memo = Memo::where('status',1)->where('id',$id)->first();
 
         // dd($memo);
 
-        $memos = Memo::where("user_id",$user["id"])->where("status",1)->orderBy("updated_at","DESC")->get();
+        $memos = Memo::where("status",1)->orderBy("updated_at","DESC")->get();
 
-        $tags = Tag::where("user_id",$user["id"])->get();
+        $tags = Tag::all();
 
-        $title = Title::where("user_id",$user["id"])->where("id",$memo["title_id"])->get();
+        $title = Title::where("id",$memo["title_id"])->get();
 
-        $titles = Title::where("user_id",$user["id"])->get();
+        $titles = Title::all();
 
         $problems = Problem::all();
 
@@ -200,7 +200,7 @@ class HomeController extends Controller
         $user = \Auth::user();
 
         //同じタグがあるか確認
-        $exist_tag=Tag::where("name",$data["new_tag"])->where("user_id",$user["id"])->first();
+        $exist_tag=Tag::where("name",$data["new_tag"])->first();
         // dd($exist_tag);
         // whereを使って条件を絞る（第一引数：対象のカラム　第二引数：条件となる値）
         // 
@@ -219,6 +219,15 @@ class HomeController extends Controller
         // Tag::insertGetId(["name"=>$data["new_tag"],"user_id"=>$user["id"]]);
 
         return back();
+    }
+
+    public function ranking()
+    {
+        $users = User::all();
+
+        $problems_rank = Review::select()->join("problems", "problems.id", "=", "reviews.problem_id")->selectRaw("AVG(reviews.point) as average")->groupBy("problems.user_id")->get();
+
+        return view("ranking", compact("problems_rank", "users"));
     }
 
     public function delete(Request $request, $id)
@@ -255,7 +264,7 @@ class HomeController extends Controller
         $user = \Auth::User();
         // $memo = Memo::where('status',1)->where('id',$id)->where('user_id',$user["id"])->first();
 
-        $memos = Memo::where("user_id",$user["id"])->where("status",1)->orderBy("updated_at","DESC")->get();
+        $memos = Memo::where("status",1)->orderBy("updated_at","DESC")->get();
 
 
 

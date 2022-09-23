@@ -34,6 +34,7 @@ Route::group(["middleware" => "auth"], function() // ログインした状態で
     Route::get('/upload', [App\Http\Controllers\HomeController::class, 'upload'])->name('upload');
     Route::get('/myPage', [App\Http\Controllers\HomeController::class, 'myPage'])->name('myPage');
     Route::get('/answerList', [App\Http\Controllers\HomeController::class, 'answerList'])->name('answerList');
+    Route::get('/ranking', [App\Http\Controllers\HomeController::class, 'ranking'])->name('ranking');
     Route::get('/answerDetail/{id}', [App\Http\Controllers\HomeController::class, 'answerDetail'])->name('answerDetail');
     Route::post('/addTag', [App\Http\Controllers\HomeController::class, 'addTag'])->name('addTag');
     Route::post('/review/{id}', [App\Http\Controllers\HomeController::class, 'review'])->name('review');

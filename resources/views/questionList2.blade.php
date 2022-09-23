@@ -12,7 +12,7 @@
             </div>
             <div class="card-body py-2 px-2">
                 @foreach($memos_noanswer as $memo)
-                <a href="/edit/{{$memo['id']}}" class = "d-block">{{$titles[$memo["title_id"]-1]["name"]}}</a>
+                <a href="/edit/{{$memo['id']}}" class = "d-block">{{$titles_noanswer[$memo["title_id"]-1]["name"]}}</a>
                 @endforeach 
             </div>
         </div> 
