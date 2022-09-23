@@ -9,7 +9,7 @@
         <div class="card-body">
             <div class="row justify-content-center">
                 <div class="col-sm-5">
-                    <div class="card text-center bg-primary" style="width: 80%;">
+                    <div class="card text-center bg-primary" style="width: 100%;">
                         <div class="card-header">
                             名前
                         </div>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-sm-5">
-                    <div class="card text-center bg-info" style="width: 80%;">
+                    <div class="card text-center bg-info" style="width: 100%;">
                         <div class="card-header">
                             メールアドレス
                         </div>
@@ -34,8 +34,8 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm-5">
-                    <div class="card text-center" style="width: 80%; margin-top:30px;">
+                <div class="col-sm-3">
+                    <div class="card text-center" style="width: 100%; margin-top:30px;">
                         <div class="card-header">
                             質問数
                         </div>
@@ -46,14 +46,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5 ">
-                    <div class="card text-center" style="width: 80%; margin-top:30px;">
+                <div class="col-sm-3 ">
+                    <div class="card text-center" style="width: 100%; margin-top:30px;">
                         <div class="card-header">
                             回答数
                         </div>
                         <div class="card-body">
                             <blockquote class="blockquote mb-0">
                             <p>{{$count_answer}}</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-sm-3 ">
+                    <div class="card text-center" style="width: 100%; margin-top:30px;">
+                        <div class="card-header">
+                            レビュー平均
+                        </div>
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                            <p>{{$review_average}}</p>
                             </blockquote>
                         </div>
                     </div>

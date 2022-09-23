@@ -80,7 +80,9 @@ class HomeController extends Controller
 
         $count_answer = Problem::where("user_id", $user["id"])->count();
 
-        return view('myPage', compact("user","memos_answered" ,"count_question", "count_answer","titles"));
+        $review_average = round(Review::select()->join("problems", "problems.id", "=", "reviews.problem_id")->where("problems.user_id", $user["id"])->avg("reviews.point"),2,PHP_ROUND_HALF_UP);
+
+        return view('myPage', compact("user","memos_answered" ,"count_question", "count_answer","titles", "review_average"));
     }
 
     public function answerList()
