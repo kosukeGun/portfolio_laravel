@@ -20,11 +20,18 @@
                 @endif
                 <form style="text-align:center; margin-bottom:30px;" method='POST' action="/review/{{$problem['id']}}">
                 @csrf
-                    <select class="form-control" name = "review_point" style="width:30%; margin:auto; margin-top:30px; margin-bottom:20px; ">
-                        @for($i = 1; $i < 6; $i++)
-                        <option style="text-align:center;" value = {{$i}}>{{$i}}</option>
-                        @endfor
-                    </select>
+                    <div class="form-group">
+                        <label for="review_point">点数</label>
+                        <select class="form-control" name = "review_point" style="width:30%; margin:auto; margin-top:30px; margin-bottom:20px; ">
+                            @for($i = 1; $i < 6; $i++)
+                            <option style="text-align:center;" value = {{$i}}>{{$i}}</option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review_comment">コメント</label>
+                        <textarea name='review_comment' class="form-control" placeholder="任意"></textarea>
+                    </div>
                     <button type='submit' class="btn btn-primary">決定</button>
                 </form>
                 <a href="/answerList" class="btn btn-primary" style="width:100px;">戻る</a>

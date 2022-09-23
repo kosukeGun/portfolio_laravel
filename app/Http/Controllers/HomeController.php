@@ -238,11 +238,11 @@ class HomeController extends Controller
 
         if(empty($exist_review["id"]))
         {
-            Review::insertGetId(["point"=>$data["review_point"], "problem_id"=>$id, "user_id"=>$user["id"]]);
+            Review::insertGetId(["point"=>$data["review_point"], "comment"=>$data["review_comment"], "problem_id"=>$id, "user_id"=>$user["id"]]);
         }
         else
         {
-            Review::where("problem_id", $id)->where("user_id", $user["id"])->update(["point" => $data["review_point"]]);
+            Review::where("problem_id", $id)->where("user_id", $user["id"])->update(["point" => $data["review_point"], "comment" => $data["review_comment"]]);
         }
 
         return back()->with("review_success", "レビューが完了しました！");
