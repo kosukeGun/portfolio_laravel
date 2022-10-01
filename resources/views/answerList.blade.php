@@ -11,8 +11,8 @@
                 <div class="col-sm-3">
                     <div class="card text-center m-4">
                         <div class="card-body">
-                            <h3 class="card-title">{{$problem["name"]}}</h3>
-                            <p class="card-text">{{$users[$problem["user_id"]-1]["name"]}}</p>
+                            <h3 class="card-title">{{$problem["problem_name"]}}</h3>
+                            <p class="card-text">{{$problem["user_name"]}}</p>
                             <a href="/answerDetail/{{$problem['id']}}" class="btn btn-primary">詳細</a>
                         </div>
                     </div>

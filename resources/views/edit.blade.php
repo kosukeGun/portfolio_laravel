@@ -7,10 +7,13 @@
         <div class="card w-50">
             <div class="card-header d-flex justify-content-between">
                 メモ編集
+                @if(isset($memo["problem_name"]))
                 <form method='POST' action="/delete/{{$memo['id']}}" id='delete-form'>
+                
                     @csrf
                     <button class='p-0 mr-2' style='border:none;'><i id='delete-button' class="fas fa-trash"></i></button>
                 </form>
+                @endif
             </div>
             <div class="card-body">
                 <form method='POST' enctype="multipart/form-data" action="{{route('update',['id' => $memo['id']])}}">
@@ -19,7 +22,7 @@
                     
                     <div class="form-group">
                         <label for="title">件名</label>
-                        <h1>{{$title[0]["name"]}}</h1>
+                        <h1>{{$memo["title_name"]}}</h1>
                     </div>
                     <div class="form-group">
                         <label for="content">質問内容</label>
@@ -42,16 +45,16 @@
                     </div>
                     <div class="form-group">
                         <label for="problem">悩みの原因</label>
-                        @if($memo["problem_id"]!=null)
-                        <input name='problem' class="form-control" value={{$problems[$memo['problem_id']-1]['name']}} placeholder="悩みの原因を入力（”知識不足”など）">
+                        @if($memo["problem_name"] != null)
+                        <input name='problem' class="form-control" value={{$memo['problem_name']}} placeholder="悩みの原因を入力（”知識不足”など）">
                         @else
                         <input name='problem' class="form-control" placeholder="悩みの原因を入力（”知識不足”など）">
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="explain">原因説明</label>
-                        @if($memo["problem_id"]!=null)
-                        <textarea name='explain' class="form-control">{{$problems[$memo['problem_id']-1]['explain']}}</textarea>
+                        @if($memo["problem_explain"] != null)
+                        <textarea name='explain' class="form-control">{{$memo['problem_explain']}}</textarea>
                         @else
                         <textarea name='explain' class="form-control"></textarea>
                         @endif

@@ -12,13 +12,13 @@
             </div>
             <div class="card-body py-2 px-2">
                 <div class="row">
-                    @foreach($memos_answer as $memo)
+                    @foreach($memos_all as $memo)
                     <div class="col-sm-6 col-xs-12 col-md-3 col-lg-2">
                         <div class="card text-center m-4 ">
                             <img src="{{ '/storage/' . $memo['image']}}">
                             <div class="card-body">
-                                <h5 class="card-title">{{$titles[$memo["title_id"]-1]["name"]}}</h5>
-                                <p class="card-text">{{$users[$memo["user_id"]-1]["name"]}}</p>
+                                <h5 class="card-title">{{$memo["title_name"]}}</h5>
+                                <p class="card-text">{{$memo["user_name"]}}</p>
                                 <a href="/edit/{{$memo['id']}}" class="btn btn-primary">回答</a>
                             </div>
                         </div>

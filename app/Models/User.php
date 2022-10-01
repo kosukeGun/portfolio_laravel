@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function memos()
+    {
+        return $this->belongsTo("App/Models/Memo");
+    }
+
+    public function problems()
+    {
+        return $this->belongsTo("App/Models/Problem");
+    }
 }

@@ -13,4 +13,14 @@ class Problem extends Model
     {
         return $this->hasMany("App\Models\Review");
     }
+
+    public function memos()
+    {
+        return $this->belongsTo("App/Models/Memo");
+    }
+
+    public function users()
+    {
+        return $this->hasMany("App/Models/User");
+    }
 }

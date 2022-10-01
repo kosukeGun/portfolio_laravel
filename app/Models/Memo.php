@@ -26,4 +26,21 @@ class Memo extends Model
           return $memos;
         }
     }
+
+    public function users()
+    {
+        return $this->hasMany("App/Models/User");
+    }
+
+    public function problems()
+    {
+        return $this->hasMany("App/Models/Problem");
+    }
+
+    public function titles()
+    {
+        return $this->hasMany("App/Models/Title");
+    }
+
+    
 }

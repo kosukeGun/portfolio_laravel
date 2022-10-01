@@ -77,7 +77,7 @@
                     <div class="card text-center m-4">
                         <img src="{{ '/storage/' . $memo['image']}}">
                         <div class="card-body">
-                            <h5 class="card-title">{{$titles[$memo["title_id"]-1]["name"]}}</h5>
+                            <h5 class="card-title">{{$memo["title_name"]}}</h5>
                             <p class="card-text">{{$memo["updated_at"]}}</p>
                             <a href="/edit/{{$memo['id']}}" class="btn btn-primary">再質問</a>
                         </div>

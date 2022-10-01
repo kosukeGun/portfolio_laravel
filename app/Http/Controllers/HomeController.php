@@ -11,6 +11,7 @@ use App\Models\Title;
 use App\Models\Image;
 use App\Models\Problem;
 use App\Models\Review;
+use Illuminate\Support\Facades\Log;
 
 // モデルに相当するファイルのパスを指定する
 
@@ -38,12 +39,14 @@ class HomeController extends Controller
 
         $users = User::all();
         //ASC:昇順、DESC:降順
-        $memos_answer = Memo::where("status",1)->orderBy("updated_at","DESC")->get();
+        $memos_all = Memo::join("titles", "titles.id" ,"=", "memos.title_id")->join("users", "users.id", "=", "memos.user_id")->select("users.name as user_name", "titles.name as title_name", "memos.id as id", "titles.id as titles_id", "users.id as users_id", "image")->where("status",1)->get();
         // dd($memos);
+
+        // dd($memos_all);
 
         $titles = Title::all();
 
-        return view('questionList',compact("user","memos_answer","titles","users"));
+        return view('questionList',compact("user","memos_all","titles","users"));
     }
 
     public function index2()
@@ -51,7 +54,7 @@ class HomeController extends Controller
         //メモ一覧を取得
         $user = \Auth::user();
         //ASC:昇順、DESC:降順
-        $memos_noanswer = Memo::where("status",1)->where("answer", 0)->orderBy("updated_at","DESC")->get();
+        $memos_noanswer = Memo::join("titles", "titles.id" ,"=", "memos.title_id")->join("users", "users.id", "=", "memos.user_id")->select("users.name as user_name", "titles.name as title_name")->where("answer", 0)->where("status",1)->get();
         // dd($memos);
 
         $titles_noanswer = Title::all();
@@ -72,7 +75,9 @@ class HomeController extends Controller
 
         $problems = Problem::all();
 
-        $memos_answered = Memo::where("user_id", $user["id"])->where("answer",1)->where("status",1)->get();
+        $memos_answered = Memo::select("memos.id as id", "titles.name as title_name", "image", "memos.updated_at as updated_at")->join("titles", "titles.id", "=", "memos.title_id")->where("memos.answer", 1)->where("memos.status", 1)->where("memos.user_id", $user["id"])->get();
+
+        // dd($memos_answered);
 
         $titles = Title::all();
 
@@ -82,16 +87,14 @@ class HomeController extends Controller
 
         $review_average = round(Review::select()->join("problems", "problems.id", "=", "reviews.problem_id")->where("problems.user_id", $user["id"])->avg("reviews.point"),2,PHP_ROUND_HALF_UP);
 
-        return view('myPage', compact("user","memos_answered" ,"count_question", "count_answer","titles", "review_average"));
+        return view('myPage', compact("user","memos_answered" ,"count_question", "count_answer", "review_average", "titles"));
     }
 
     public function answerList()
     {
-        $users = User::all();
+        $problems = Problem::join("users", "users.id", "=", "problems.user_id")->select("users.name as user_name", "problems.name as problem_name", "problems.id as id")->get();
 
-        $problems = Problem::all();
-
-        return view("answerList", compact("problems","users"));
+        return view("answerList", compact("problems"));
     }
 
     public function answerDetail($id)
@@ -147,23 +150,17 @@ class HomeController extends Controller
 
     public function edit($id){
         $user = \Auth::user();
-        $memo = Memo::where('status',1)->where('id',$id)->first();
+        $memo = Memo::leftJoin("problems", "problems.id", "=", "memos.problem_id")->join("titles", "titles.id", "=", "memos.title_id")->select("memos.id as id", "problems.name as problem_name", "problems.explain as problem_explain", "problems.id as problems_id", "titles.id as titles_id", "titles.name as title_name", "content", "memos.tag_id as tag_id", "answer", "image")->where("status", 1)->where("memos.id", $id)->first();
 
-        // dd($memo);
-
-        $memos = Memo::where("status",1)->orderBy("updated_at","DESC")->get();
+        // $memo_null = Memo::join("titles", "titles.id", "=", "memos.title_id")->select("memos.id as id", "titles.id as titles_id", "titles.name as title_name", "content", "tag_id", "answer", "image")->where("status", 1)->where("memos.id", $id)->get();
 
         $tags = Tag::all();
 
-        $title = Title::where("id",$memo["title_id"])->get();
+        // dd($memo);
+        // dd($memo_null);
 
-        $titles = Title::all();
-
-        $problems = Problem::all();
-
-        return view("edit",compact("memo","user","memos","tags","title","titles","problems"));
+        return view("edit",compact("memo","user","tags"));
         // 変数をviewへ受け渡す関数
-
         
     }
 

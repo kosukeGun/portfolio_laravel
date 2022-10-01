@@ -35,9 +35,9 @@ class AppServiceProvider extends ServiceProvider
             
             // タグに取得
              $tagModel = new Tag();
-             $tags = $tagModel->where('user_id', \Auth::id())->get();
+            //  $tags = $tagModel->where('user_id', \Auth::id())->get();
             
-            $view->with('user', $user)->with('memos', $memos)->with('tags', $tags);
+            $view->with('user', $user)->with('memos', $memos);
         });
     }
 }
