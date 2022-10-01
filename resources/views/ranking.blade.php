@@ -19,7 +19,7 @@
                     @foreach($problems_rank as $problem)
                     <tr>
                         <th scope="row">{{$problem["user_id"]}}</th>
-                        <td>{{$users[$problem["user_id"]-1]["name"]}}</td>
+                        <td>{{$problem["user_name"]}}</td>
                         <td>{{$problem["average"]}}</td>
                     </tr>
                     @endforeach
