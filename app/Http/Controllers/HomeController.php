@@ -222,7 +222,7 @@ class HomeController extends Controller
     {
         $users = User::all();
 
-        $problems_rank = Review::select("problems.user_id as user_id", "users.name as user_name","users.name as user_name")->join("problems", "problems.id", "=", "reviews.problem_id")->join("users", "users.id", "=", "problems.user_id")->selectRaw("AVG(reviews.point) as average")->groupBy("problems.user_id")->get();
+        $problems_rank = Review::select("problems.user_id as user_id", "users.name as user_name","users.name as user_name")->join("problems", "problems.id", "=", "reviews.problem_id")->join("users", "users.id", "=", "problems.user_id")->selectRaw("ROUND(AVG(reviews.point),1) as average")->groupBy("problems.user_id")->get();
 
         // dd($problems_rank);
 
