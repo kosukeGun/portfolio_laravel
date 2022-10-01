@@ -54,7 +54,7 @@ class HomeController extends Controller
         //メモ一覧を取得
         $user = \Auth::user();
         //ASC:昇順、DESC:降順
-        $memos_noanswer = Memo::join("titles", "titles.id" ,"=", "memos.title_id")->join("users", "users.id", "=", "memos.user_id")->select("users.name as user_name", "titles.name as title_name")->where("answer", 0)->where("status",1)->get();
+        $memos_noanswer = Memo::join("titles", "titles.id" ,"=", "memos.title_id")->join("users", "users.id", "=", "memos.user_id")->select("users.name as user_name", "titles.name as title_name", "memos.id as id", "titles.id as titles_id", "users.id as users_id", "image")->where("answer", 0)->where("status",1)->get();
         // dd($memos);
 
         $titles_noanswer = Title::all();
