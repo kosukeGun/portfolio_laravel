@@ -120,7 +120,7 @@ class HomeController extends Controller
         // POSTされたデータをDB（memosテーブル）に挿入
         // MEMOモデルにDBへ保存する命令を出す
 
-        $title_id=Title::insertGetId(["name"=>$data["title"],"user_id"=>$data["user_id"]]);
+        $title_id=Title::insertGetId(["name"=>$data["title"]]);
 
         $image = $request->file("sample_image");
 
