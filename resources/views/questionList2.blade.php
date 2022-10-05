@@ -7,11 +7,12 @@
         <div class="card h-100">
             <div class="card-header d-flex">
                 質問一覧 
-                <a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a>
+                <a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a> 
                 <a href="/home">全部</a>
             </div>
             <div class="card-body py-2 px-2">
-                @foreach($memos_noanswer as $memo)
+                <div class="row">
+                    @foreach($memos_noanswer as $memo)
                     <div class="col-sm-6 col-xs-12 col-md-3 col-lg-2">
                         <div class="card text-center m-4 ">
                             <img src="{{ '/storage/' . $memo['image']}}">
@@ -22,7 +23,8 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div> 
     </div>
