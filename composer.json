@@ -59,11 +59,6 @@
         "sort-packages": true
     },
 
-    "post-install-cmd": {
-        "php artisan clear-compiled":true,
-        "php artisan optimize":true,
-        "chmod -R 777 public/" :true
-    },
 
 
     "minimum-stability": "dev",
