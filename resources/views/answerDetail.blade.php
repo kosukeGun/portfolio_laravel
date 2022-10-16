@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="review_comment">コメント</label>
-                        <textarea style="width:500px; height:100px; margin:auto; margin-bottom:30px;" name='review_comment' class="form-control" placeholder="任意"></textarea>
+                        <textarea style="width:70%; margin:auto; margin-bottom:30px;" name='review_comment' class="form-control" placeholder="任意"></textarea>
                     </div>
                     <button type='submit' class="btn btn-danger" style="width:100px;">決定</button>
                 </form>

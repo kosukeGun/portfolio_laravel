@@ -7,17 +7,17 @@
         <div class="card-header">ランキング</div>
         <div class="card-body">
             <div class="row justify-content-center">
-            <table class="table">
+            <table class="table table-info table-striped table-bordered" style="text-align:center;">
                 <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">rank</th>
-                        <th scope="col">name</th>
-                        <th scope="col">average</th>
+                    <tr style="height:50px;">
+                        <th style="width:20%;" scope="col">rank</th>
+                        <th style="width:60%;" scope="col">name</th>
+                        <th style="width:20%;" scope="col">average</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($problems_rank as $index => $problem)
-                    <tr>
+                    <tr style="height:50px;">
                         <th scope="row">{{$index + 1}}</th>
                         <td>{{$problem["user_name"]}}</td>
                         <td>{{$problem["average"]}}</td>

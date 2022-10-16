@@ -7,11 +7,10 @@
         <div class="card h-100">
             <div class="card-header d-flex">
                 質問一覧 
-                <a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a> 
-                <a href="/home/noanswer">未回答のみ</a>
             </div>
             <div class="card-body py-2 px-2">
                 <div class="row justify-content-center">
+                <button class="btn btn-success" type="button" onclick="location.href='/home/noanswer'">未回答のみ</button>
                     @foreach($memos_all as $memo)
                     <div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
                         <div class="card text-center m-4 ">

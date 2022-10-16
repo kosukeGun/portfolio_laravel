@@ -10,10 +10,10 @@
             <div class="row justify-content-center">
                 <div class="col-sm-5">
                     <div class="card text-center bg-primary" style="width: 100%;">
-                        <div class="card-header">
+                        <div class="card-header" style="color:white;">
                             名前
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="color:white;">
                             <blockquote class="blockquote mb-0">
                             <p>{{$user["name"]}}</p>
                             </blockquote>
@@ -22,10 +22,10 @@
                 </div>
                 <div class="col-sm-5">
                     <div class="card text-center bg-info" style="width: 100%;">
-                        <div class="card-header">
+                        <div class="card-header" style="color:white;">
                             メールアドレス
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="color:white;">
                             <blockquote class="blockquote mb-0">
                             <p>{{$user["email"]}}</p>
                             </blockquote>
@@ -71,10 +71,14 @@
                     </div>
                 </div>                
             </div>
+        </div>
+    <div class="card w-100">
+        <div class="card-header">回答済み</div>
+        <div class="card-body">
             <div class="row justify-content-center">
                 @foreach($memos_answered as $memo)
-                <div class="col-sm-3">
-                    <div class="card text-center m-4">
+                <div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
+                    <div class="card text-center">
                         <img src="{{ '/storage/' . $memo['image']}}">
                         <div class="card-body">
                             <h5 class="card-title">{{$memo["title_name"]}}</h5>

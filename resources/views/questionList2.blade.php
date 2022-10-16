@@ -12,6 +12,7 @@
             </div>
             <div class="card-body py-2 px-2">
                 <div class="row justify-content-center">
+                <button class="btn btn-success" type="button" onclick="location.href='/home'">全部</button>
                     @foreach($memos_noanswer as $memo)
                     <div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
                         <div class="card text-center m-4 ">

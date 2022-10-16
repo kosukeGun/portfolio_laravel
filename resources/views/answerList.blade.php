@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="row justify-content-center">
                 @foreach($problems as $problem)
-                <div class="col-sm-3">
+                <div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
                     <div class="card text-center m-4">
                         <div class="card-header" style="height:50px; font-size:20px; padding:auto; background-color:#93FFAB;">{{$problem["problem_name"]}}</div>
                         <div class="card-body">
