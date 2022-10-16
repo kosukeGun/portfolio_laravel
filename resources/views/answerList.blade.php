@@ -10,8 +10,8 @@
                 @foreach($problems as $problem)
                 <div class="col-sm-3">
                     <div class="card text-center m-4">
+                        <div class="card-header" style="height:50px; font-size:20px; padding:auto; background-color:#93FFAB;">{{$problem["problem_name"]}}</div>
                         <div class="card-body">
-                            <h3 class="card-title">{{$problem["problem_name"]}}</h3>
                             <p class="card-text">{{$problem["user_name"]}}</p>
                             <a href="/answerDetail/{{$problem['id']}}" class="btn btn-primary">詳細</a>
                         </div>

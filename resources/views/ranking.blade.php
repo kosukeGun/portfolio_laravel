@@ -10,15 +10,15 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">name</th>
-                    <th scope="col">average</th>
+                        <th scope="col">rank</th>
+                        <th scope="col">name</th>
+                        <th scope="col">average</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($problems_rank as $problem)
+                    @foreach($problems_rank as $index => $problem)
                     <tr>
-                        <th scope="row">{{$problem["user_id"]}}</th>
+                        <th scope="row">{{$index + 1}}</th>
                         <td>{{$problem["user_name"]}}</td>
                         <td>{{$problem["average"]}}</td>
                     </tr>

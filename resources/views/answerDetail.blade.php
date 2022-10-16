@@ -22,7 +22,7 @@
                 @csrf
                     <div class="form-group">
                         <label for="review_point">点数</label>
-                        <select class="form-control" name = "review_point" style="width:30%; margin:auto; margin-top:30px; margin-bottom:20px; ">
+                        <select class="form-control" name = "review_point" style="width:10%; margin:auto; margin-top:20px; margin-bottom:20px; ">
                             @for($i = 1; $i < 6; $i++)
                             <option style="text-align:center;" value = {{$i}}>{{$i}}</option>
                             @endfor
@@ -30,9 +30,9 @@
                     </div>
                     <div class="form-group">
                         <label for="review_comment">コメント</label>
-                        <textarea name='review_comment' class="form-control" placeholder="任意"></textarea>
+                        <textarea style="width:500px; height:100px; margin:auto; margin-bottom:30px;" name='review_comment' class="form-control" placeholder="任意"></textarea>
                     </div>
-                    <button type='submit' class="btn btn-primary">決定</button>
+                    <button type='submit' class="btn btn-danger" style="width:100px;">決定</button>
                 </form>
                 <a href="/answerList" class="btn btn-primary" style="width:100px;">戻る</a>
             </div>
