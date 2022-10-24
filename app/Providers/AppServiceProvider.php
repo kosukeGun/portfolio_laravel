@@ -39,5 +39,7 @@ class AppServiceProvider extends ServiceProvider
             
             $view->with('user', $user)->with('memos', $memos);
         });
+
+        Schema::defaultStringLength(191);
     }
 }
