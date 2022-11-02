@@ -126,7 +126,7 @@ class HomeController extends Controller
 
         if($request->hasFile("sample_image"))
         {
-            $image_binary = base64_encode(file_get_contents($request->file("sample_image")->getRealPath()));
+            $image_binary = base64_encode(file_get_contents($request->sample_image->getRealPath()));
         }
         else
         {
