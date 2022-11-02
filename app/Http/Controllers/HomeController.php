@@ -122,8 +122,6 @@ class HomeController extends Controller
 
         $title_id=Title::insertGetId(["name"=>$data["title"]]);
 
-        $image = $request->file("sample_image");
-
         if($request->hasFile("sample_image"))
         {
             $image_binary = base64_encode(file_get_contents($request->sample_image->getRealPath()));
