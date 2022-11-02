@@ -124,14 +124,18 @@ class HomeController extends Controller
 
         $image = $request->file("sample_image");
 
+        file_get_contents($request->file("sample_image")->getRealPath());
+
+        
+
         if($request->hasFile("sample_image"))
         {
-            $path = \Storage::put("/public",$image);
+            $image_binary = base64_encode(file_get_contents($request->image->getRealPath()));
             $path = explode("/",$path);
         }
         else
         {
-            $path = null;
+            $image_binary = null;
         }
 
 
