@@ -124,14 +124,9 @@ class HomeController extends Controller
 
         $image = $request->file("sample_image");
 
-        file_get_contents($request->file("sample_image")->getRealPath());
-
-        
-
         if($request->hasFile("sample_image"))
         {
-            $image_binary = base64_encode(file_get_contents($request->image->getRealPath()));
-            $path = explode("/",$path);
+            $image_binary = base64_encode(file_get_contents($request->file("sample_image")->getRealPath()));
         }
         else
         {
@@ -146,7 +141,7 @@ class HomeController extends Controller
         
         //タグのIDが判明する
         // タグIDをmemosテーブルに入れてあげる
-        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'], "title_id"=>$title_id,"image" => $path[1], 'status' => 1]);
+        $memo_id = Memo::insertGetId(['content' => $data['content'],'user_id' => $data['user_id'], "title_id"=>$title_id,"image" => $image_binary, 'status' => 1]);
         
         // リダイレクト処理
         return redirect()->route('home')->with("success", "新規データが送信されました！");
