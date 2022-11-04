@@ -1,12 +1,12 @@
 @extends('layouts.app') 
 
 @section('content')
-<div class="col-md-12 p-0">
-    <div class="row justify-content-center ml-0 mr-0 h-100">
+<div class="p-0">
+    <div class="row justify-content-center ml-0 mr-0">
         <!-- {{$user["name"] }} -->
-        <div class="card w-50">
+        <div class="card col-xs-12 col-md-6">
             <div class="card-header d-flex justify-content-between">
-                メモ編集
+                質問回答
                 @if(isset($memo["problem_name"]))
                 <form method='POST' action="/delete/{{$memo['id']}}" id='delete-form'>
                 
@@ -65,7 +65,7 @@
                 </form>
             </div>
         </div>
-        <div class="card w-50">
+        <div class="card col-xs-12 col-md-6">
             <div class="card-header d-flex justify-content-between">
                 添付画像
             </div>
