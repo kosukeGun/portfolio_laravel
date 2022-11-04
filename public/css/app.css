@@ -10902,4 +10902,15 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+
+  .card-solution-detail {
+    width:70%;
+  }
+
+  @media (max-width:500px) {
+    .card-solution-detail {
+      width:100%;
+    }
+    
+  }
 }

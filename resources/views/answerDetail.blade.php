@@ -8,16 +8,18 @@
     {{ session('review_success') }}
     </div>
     @endif
-    <div class="card w-100">
-        <div class="card-header">{{$problem["name"]}}</div>
+    <div class="card solution-detail" style="width:100%;">
+        <div class="card-header">解決策詳細</div>
         <div class="card-body">
             <div class="row justify-content-center">
-                <h1 style="text-align:center;">説明文</h1>
-                @if($problem["explain"] != null)
-                <p style="text-align:center;">{{$problem["explain"]}}</p>
-                @else
-                <p style="text-align:center;">説明は登録されておりません。</p>
-                @endif
+                <div class="card card-solution-detail col-xs-12 col-md-6" style="margin:20px 0;">
+                    <div class="card-header text-center">{{$problem["name"]}}</div>
+                    @if($problem["explain"] != null)
+                    <div class="card-body">{{$problem["explain"]}}</div>
+                    @else
+                    <div class="card-body">説明は登録されておりません。</div>
+                    @endif
+                </div>                
                 <form style="text-align:center; margin-bottom:30px;" method='POST' action="/review/{{$problem['id']}}">
                 @csrf
                     <div class="form-group">
@@ -28,9 +30,9 @@
                             @endfor
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-xs-6 col-md-4" style="margin:auto;">
                         <label for="review_comment">コメント</label>
-                        <textarea style="width:70%; margin:auto; margin-bottom:30px;" name='review_comment' class="form-control" placeholder="任意"></textarea>
+                        <textarea style="margin:auto; margin-bottom:30px;" name='review_comment' class="form-control col-xs-12 col-md-6" placeholder="任意"></textarea>
                     </div>
                     <button type='submit' class="btn btn-danger" style="width:100px;">決定</button>
                 </form>
