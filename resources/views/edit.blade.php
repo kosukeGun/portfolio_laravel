@@ -75,7 +75,7 @@
                     <div class="form-group my-7">
                         @if($memo["image"] != null)
                         <div style="margin-top:7%;">
-                            <img src="{{ '/storage/' . $memo['image']}}" class='w-100 mb-3'/>
+                            <img src="data:image/png;base64,<?= $memo["image"] ?>" class='w-100 mb-3'/>
                         </div>
                         @else
                         <div style="background-color:grey; margin:5%; text-align:center; padding:30%;">

@@ -79,7 +79,7 @@
                 @foreach($memos_answered as $memo)
                 <div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
                     <div class="card text-center">
-                        <img src="{{ '/storage/' . $memo['image']}}">
+                        <img src="data:image/png;base64,<?= $memo["image"] ?>">
                         <div class="card-body">
                             <h5 class="card-title">{{$memo["title_name"]}}</h5>
                             <p class="card-text">{{$memo["updated_at"]}}</p>
