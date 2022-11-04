@@ -12,6 +12,7 @@ use App\Models\Image;
 use App\Models\Problem;
 use App\Models\Review;
 use Illuminate\Support\Facades\Log;
+use \InterventionImage;
 
 // モデルに相当するファイルのパスを指定する
 
@@ -122,14 +123,25 @@ class HomeController extends Controller
 
         $title_id=Title::insertGetId(["name"=>$data["title"]]);
 
+        // $image_binary = InterventionImage::make($request->file('sample_image'))->resize(500,500);
+
+
         if($request->hasFile("sample_image"))
         {
-            $image_binary = base64_encode(file_get_contents($request->sample_image->getRealPath()));
+            $image_binary = base64_encode(file_get_contents($request->file("sample_image")->getRealPath()));
+            // $image_binary = base64_encode(file_get_contents($image_binary));
+            // $image_binary_resize = InterventionImage::make($image_binary)->resize(100,100);
+            // $image_binary = base64_encode(file_get_contents(InterventionImage::make($request->file("sample_image")->getRealPath())->resize(100,100)));
         }
         else
         {
             $image_binary = null;
         }
+
+        // $image_binary = InterventionImage::make($image_binary)->resize(500,500);
+
+        // InterventionImage::make($image_binary)->resize(600, 400)->save(public_path($request->file("sample_image")->getRealPath()) );
+        InterventionImage::make($image_binary)->resize(200, 120);
 
 
         //先にタグをインサート
